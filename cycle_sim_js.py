@@ -137,10 +137,10 @@ else:
 plt.rcParams['axes.unicode_minus'] = False
 
     def plot_cycle(self, points):
-    if points is None:
-        return
+        if points is None:
+            return
 
-    st.header("P-H 선도")
+        st.header("P-H 선도")
 
         # 한글 폰트 설정
         font_path = "/usr/share/fonts/truetype/nanum/NanumGothic.ttf"
@@ -151,7 +151,7 @@ plt.rcParams['axes.unicode_minus'] = False
             plt.rcParams['font.family'] = 'DejaVu Sans'
         plt.rcParams['axes.unicode_minus'] = False
 
-    fig, ax = plt.subplots(figsize=(6, 5))
+        fig, ax = plt.subplots(figsize=(6, 5))
 
         # Get saturation curve
         refrigerant = 'R32'
