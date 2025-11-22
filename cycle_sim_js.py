@@ -142,17 +142,14 @@ plt.rcParams['axes.unicode_minus'] = False
 
     st.header("P-H 선도")
 
-    # 한글 폰트 설정
-    import matplotlib.font_manager as fm
-    import os
-
-    font_path = "/usr/share/fonts/truetype/nanum/NanumGothic.ttf"
-    if os.path.exists(font_path):
-        fm.fontManager.addfont(font_path)
-        plt.rcParams['font.family'] = 'NanumGothic'
-    else:
-        plt.rcParams['font.family'] = 'DejaVu Sans'
-    plt.rcParams['axes.unicode_minus'] = False
+        # 한글 폰트 설정
+        font_path = "/usr/share/fonts/truetype/nanum/NanumGothic.ttf"
+        if os.path.exists(font_path):
+            fm.fontManager.addfont(font_path)
+            plt.rcParams['font.family'] = 'NanumGothic'
+        else:
+            plt.rcParams['font.family'] = 'DejaVu Sans'
+        plt.rcParams['axes.unicode_minus'] = False
 
     fig, ax = plt.subplots(figsize=(6, 5))
 
