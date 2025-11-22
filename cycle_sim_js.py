@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import CoolProp.CoolProp as CP
 import json
+import matplotlib.font_manager as fm
+import os
 
 class RefrigerationCycleWebSimulator:
     def __init__(self):
@@ -125,23 +127,34 @@ class RefrigerationCycleWebSimulator:
         col2.metric("압축기 일", f"{compressor_work:.1f} kJ/kg")
         col3.metric("EER", f"{eer:.2f}")
 
+# Streamlit Cloud 환경에서 NanumGothic 설치 후 사용
+font_path = "/usr/share/fonts/truetype/nanum/NanumGothic.ttf"
+if os.path.exists(font_path):
+    fm.fontManager.addfont(font_path)
+    plt.rcParams['font.family'] = 'NanumGothic'
+else:
+    plt.rcParams['font.family'] = 'DejaVu Sans'  # 기본 폰트
+plt.rcParams['axes.unicode_minus'] = False
+
     def plot_cycle(self, points):
-        if points is None:
-            return
+    if points is None:
+        return
 
-        st.header("P-H 선도")
+    st.header("P-H 선도")
 
-        # Set font for Korean
-        try:
-            plt.rcParams['font.family'] = 'Malgun Gothic'
-        except:
-            try:
-                plt.rcParams['font.family'] = ['DejaVu Sans', 'sans-serif']
-            except:
-                plt.rcParams['font.family'] = 'sans-serif'
-        plt.rcParams['axes.unicode_minus'] = False
+    # 한글 폰트 설정
+    import matplotlib.font_manager as fm
+    import os
 
-        fig, ax = plt.subplots(figsize=(6, 5))
+    font_path = "/usr/share/fonts/truetype/nanum/NanumGothic.ttf"
+    if os.path.exists(font_path):
+        fm.fontManager.addfont(font_path)
+        plt.rcParams['font.family'] = 'NanumGothic'
+    else:
+        plt.rcParams['font.family'] = 'DejaVu Sans'
+    plt.rcParams['axes.unicode_minus'] = False
+
+    fig, ax = plt.subplots(figsize=(6, 5))
 
         # Get saturation curve
         refrigerant = 'R32'
