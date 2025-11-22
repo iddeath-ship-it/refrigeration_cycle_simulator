@@ -6,6 +6,15 @@ import json
 import matplotlib.font_manager as fm
 import os
 
+# Streamlit Cloud 환경에서 NanumGothic 설치 후 사용
+font_path = "/usr/share/fonts/truetype/nanum/NanumGothic.ttf"
+if os.path.exists(font_path):
+    fm.fontManager.addfont(font_path)
+    plt.rcParams['font.family'] = 'NanumGothic'
+else:
+    plt.rcParams['font.family'] = 'DejaVu Sans'  # 기본 폰트
+plt.rcParams['axes.unicode_minus'] = False
+
 class RefrigerationCycleWebSimulator:
     def __init__(self):
         if 'snapshots' not in st.session_state:
@@ -126,15 +135,6 @@ class RefrigerationCycleWebSimulator:
         col1.metric("냉방효과", f"{cooling_effect:.1f} kJ/kg")
         col2.metric("압축기 일", f"{compressor_work:.1f} kJ/kg")
         col3.metric("EER", f"{eer:.2f}")
-
-# Streamlit Cloud 환경에서 NanumGothic 설치 후 사용
-font_path = "/usr/share/fonts/truetype/nanum/NanumGothic.ttf"
-if os.path.exists(font_path):
-    fm.fontManager.addfont(font_path)
-    plt.rcParams['font.family'] = 'NanumGothic'
-else:
-    plt.rcParams['font.family'] = 'DejaVu Sans'  # 기본 폰트
-plt.rcParams['axes.unicode_minus'] = False
 
     def plot_cycle(self, points):
         if points is None:
