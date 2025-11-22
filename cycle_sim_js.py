@@ -167,23 +167,23 @@ class RefrigerationCycleWebSimulator:
             h_sat_liq.append(h_l)
             h_sat_vap.append(h_v)
 
-        ax.plot(h_sat_vap, P_range, 'b-', label='포화 증기', alpha=0.7)
-        ax.plot(h_sat_liq, P_range, 'b-', label='포화 액체', alpha=0.7)
+        ax.plot(h_sat_vap, P_range, 'b-', label='Saturated Vapor', alpha=0.7)
+        ax.plot(h_sat_liq, P_range, 'b-', label='Saturated Liquid', alpha=0.7)
 
         # Plot cycle
         cycle_h = [points[1]['h'], points[2]['h'], points[3]['h'], points[4]['h'], points[1]['h']]
         cycle_p = [points[1]['P'], points[2]['P'], points[3]['P'], points[4]['P'], points[1]['P']]
 
-        ax.plot(cycle_h, cycle_p, 'r-o', label='냉동사이클', linewidth=2)
+        ax.plot(cycle_h, cycle_p, 'r-o', label='Refrigeration Cycle', linewidth=2)
 
         # Annotate points
         for i in range(1, 5):
             h, p = points[i]['h'], points[i]['P']
             ax.annotate(f'{i}', (h, p), xytext=(5, 5), textcoords='offset points', fontsize=10, fontweight='bold')
 
-        ax.set_xlabel('엔탈피 (kJ/kg)')
-        ax.set_ylabel('압력 (kPa)')
-        ax.set_title('냉매 R32 냉동사이클 P-H 선도')
+        ax.set_xlabel('Enthalpy (kJ/kg)')
+        ax.set_ylabel('Pressure (kPa)')
+        ax.set_title('R32 Refrigeration Cycle P-H Diagram')
         ax.legend()
         ax.grid(True)
         ax.set_xlim(min(h_sat_liq) - 50, 800)
